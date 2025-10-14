@@ -1,8 +1,20 @@
-# Social Life App
+# Discussion Board App
 
 ## Project Description
-This app allows its users to post and view announcements as well as leave comments on their own post and other peoples comments and for managing activities, discovering events, and connecting with the community.
+This app enables users to post and view announcements, leave comments on their own posts and others', manage activities, discover events, and connect with the community.
 
 ## Team Members
 - Alessandro Villegas - 
 - Andres Cantu - 
+
+## Features
+- User authentication
+- Create, read, update, delete (CRUD) posts
+- Comments and replies
+- Admin moderation
+
+## Target Users
+- Students (primary users)
+- Campus administrators
+- Event organizers
+- Faculty and staff
