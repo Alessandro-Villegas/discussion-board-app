@@ -1,0 +1,30 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.sqlite3
+db.sqlite3
+
+# Virtual environment
+venv/
+env/
+
+# Environment files
+.env
+*.env
+
+# macOS system files
+.DS_Store
+
+# Logs and cache
+*.log
+*.pot
+*.pyc
+*.mo
+*.swp
+*~
+*.bak
+*.pid
+*.seed
+*.coverage
