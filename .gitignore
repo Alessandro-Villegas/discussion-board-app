@@ -7,7 +7,7 @@ __pycache__/
 db.sqlite3
 
 # Virtual environment
-venv/
+virt/
 env/
 
 # Environment files
