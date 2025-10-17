@@ -15,14 +15,14 @@ This app focuses on UTRGV students and enables users to post and view announceme
 - Environment: Virtual Environment (virt)
 
 ## How to Run
-git clone https://github.com/Alessandro-Villegas/discussion-board-app.git
-cd discussion-board-app
-python3 -m venv virt
-source virt/bin/activate (mac) or source virt/Scripts/activate
-pip install -r requirements.txt
-python manage.py migrate
-python manage.py runserver
-Open in browser: http://127.0.0.1:8000/
+1. git clone https://github.com/Alessandro-Villegas/discussion-board-app.git
+2. cd discussion-board-app
+3. python3 -m venv virt
+4. source virt/bin/activate (mac) or source virt/Scripts/activate
+5. pip install -r requirements.txt
+6. python manage.py migrate
+7. python manage.py runserver
+8. Open in browser: http://127.0.0.1:8000/
 
 ## Features (Planned)
 - User authentication

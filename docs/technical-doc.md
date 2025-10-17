@@ -95,27 +95,27 @@ User → Django Views → Database → Django Templates → User's Browser
 
 5. ## Main Features
 **Authentication**
-What: User registration and login
-How: Django's built-in authentication system
-Files: users/views.py, users/templates/
+- What: User registration and login
+- How: Django's built-in authentication system
+- Files: users/views.py, users/templates/
 
 **Topics (CRUD)**
-What: Create, Read, Update, Delete topics
-How: Django views and forms
-Files: forum/views.py, forum/models.py, forum/templates/
+- What: Create, Read, Update, Delete topics
+- How: Django views and forms
+- Files: forum/views.py, forum/models.py, forum/templates/
 
 **Posts/Replies (CRUD)**
-What: Create, Read, Update, Delete replies
-How: Django views connected to Topic model
-Files: forum/views.py, forum/models.py
+- What: Create, Read, Update, Delete replies
+- How: Django views connected to Topic model
+- Files: forum/views.py, forum/models.py
 
 **Upvote/Downvote**
-What: Users can like/dislike posts
-How: Reaction model tracks votes
-Files: forum/models.py (Reaction model)
+- What: Users can like/dislike posts
+- How: Reaction model tracks votes
+- Files: forum/models.py (Reaction model)
 
 **Search**
-What: Find topics by keyword
-How: Django QuerySet filtering
-Files: forum/views.py (search view)
+- What: Find topics by keyword
+- How: Django QuerySet filtering
+- Files: forum/views.py (search view)
 
