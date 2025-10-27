@@ -1,3 +1,7 @@
 from django.shortcuts import render
+from .models import Post
 
-# Create your views here.
+def home(request):
+    # get posts from database
+    items = Post.objects.all()
+    return render(request, 'forum/home.html', {'items': items})
