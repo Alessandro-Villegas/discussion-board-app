@@ -25,8 +25,8 @@
 |---|---------|-------------|------------|----------|--------|
 | 2.1 | Implement post/topic creation | [Alessandro] | Oct 18 | Oct 31 | ✅ Done |
 | 2.2 | Implement post/topic viewing | [Alessandro] | Oct 18 | Oct 31 | ✅ Done |
-| 2.3 | Implement post/topic editing | [Name] | Nov 1 | Nov 7 | 📋 To Do |
-| 2.4 | Implement post/topic deletion | [Name] | Nov 1 | Nov 7 | 📋 To Do |
+| 2.3 | Implement post/topic editing | [Alessandro] | Nov 1 | Nov 7 | ✅ Done |
+| 2.4 | Implement post/topic deletion | [Alessandro] | Nov 1 | Nov 7 | ✅ Done |
 
 **Deliverable**: Working prototype (Part of Nov 14 delivery)
 
@@ -37,7 +37,7 @@
 | # | Subtask | Assigned To | Start Date | Due Date | Status |
 |---|---------|-------------|------------|----------|--------|
 | 3.1 | Implement comment/reply system | [Alessandro] | Nov 8 | Nov 21 | ✅ Done |
-| 3.2 | Allow editing and deletion of comments | [Name] | Nov 15 | Nov 21 | 📋 To Do |
+| 3.2 | Allow editing and deletion of comments | [Alessandro] | Nov 15 | Nov 21 | ✅ Done |
 | 3.3 | Implement Upvote/Downvote system | [Name] | Nov 22 | Nov 28 | 📋 To Do |
 | 3.4 | Add a sorting system | [Name] | Nov 22 | Nov 28 | 📋 To Do |
 

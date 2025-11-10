@@ -1,0 +1,51 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ post.title }}</title>
+    <link rel="stylesheet" href="{% static 'forum/forum.css' %}">
+</head>
+<body>
+
+<div class="container mt-5 post-card">
+    <h1>{{ post.title }}</h1>
+    <div class="post-meta">by {{ post.author }} on {{ post.created_at|date:"M d, Y H:i" }}</div>
+    <p>{{ post.content }}</p>
+
+    <!-- Post Buttons -->
+    <div class="mb-3">
+        <a href="{% url 'edit-post' post.pk %}" class="btn btn-sm btn-warning">Edit Post</a>
+        <a href="{% url 'delete-post' post.pk %}" class="btn btn-sm btn-danger">Delete Post</a>
+    </div>
+
+    <hr>
+    <h4>Comments:</h4>
+    {% for comment in post.comments.all %}
+        <div class="comment-card">
+            <div class="comment-author">{{ comment.author }}</div>
+            <div class="comment-date">{{ comment.created_at|date:"M d, Y H:i" }}</div>
+            <div class="comment-text">{{ comment.text }}</div>
+
+            <div class="mt-1">
+                <a href="{% url 'edit-comment' comment.pk %}" class="btn btn-sm btn-warning">Edit</a>
+                <a href="{% url 'delete-comment' comment.pk %}" class="btn btn-sm btn-danger">Delete</a>
+            </div>
+        </div>
+    {% empty %}
+        <p>No comments yet.</p>
+    {% endfor %}
+
+    <hr>
+    <h4>Add a Comment:</h4>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-primary">Post Comment</button>
+    </form>
+
+    <a href="{% url 'forum-home' %}" class="btn btn-link mt-3">← Back to all posts</a>
+</div>
+
+</body>
+</html>
