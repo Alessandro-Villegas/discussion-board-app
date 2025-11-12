@@ -70,3 +70,13 @@ def delete_comment(request, pk):
         return redirect('post-detail', pk=post_pk)
     
     return render(request, 'forum/delete_comment.html', {'comment': comment})
+
+def create_post(request):
+    if request.method == 'POST':
+        form = PostForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('forum-home')  
+    else:
+        form = PostForm()
+    return render(request, 'forum/create_post.html', {'form': form})

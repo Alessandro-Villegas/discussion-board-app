@@ -16,6 +16,7 @@
 </header>
 
 <div class="container mt-5">
+    <a href="{% url 'create_post' %}" class="btn btn-success mb-3">Create Post</a>
     {% for post in items %}
         <div class="card mb-4 shadow-sm border-utrgv-blue">
             <div class="card-body">
@@ -34,6 +35,8 @@
 <footer class="text-center mt-5 py-3 bg-light text-muted">
     © {{ year|default:"2025" }} UTRGV Forum Board
 </footer>
+
+
 
 <!-- Bootstrap JS -->
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>

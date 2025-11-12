@@ -22,4 +22,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('forum/', include('forum.urls')),
     path('', RedirectView.as_view(url = '/forum/', permanent = True)), # redirect home
+    path('', include('forum.urls')),
 ]
