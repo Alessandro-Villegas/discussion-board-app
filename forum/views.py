@@ -80,3 +80,16 @@ def create_post(request):
     else:
         form = PostForm()
     return render(request, 'forum/create_post.html', {'form': form})
+
+def upvote_post(request, pk):
+    post = get_object_or_404(Post, pk=pk)
+    post.upvotes += 1
+    post.save()
+    return redirect('post-detail', pk=pk)
+
+
+def downvote_post(request, pk):
+    post = get_object_or_404(Post, pk=pk)
+    post.downvotes += 1
+    post.save()
+    return redirect('post-detail', pk=pk)

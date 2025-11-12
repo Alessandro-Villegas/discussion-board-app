@@ -20,6 +20,18 @@
     </div>
 
     <hr>
+    <div class="vote-section my-3">
+        <form action="{% url 'upvote-post' post.pk %}" method="post" style="display:inline;">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-success">⬆️ Upvote ({{ post.upvotes }})</button>
+        </form>
+
+        <form action="{% url 'downvote-post' post.pk %}" method="post" style="display:inline;">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-danger">⬇️ Downvote ({{ post.downvotes }})</button>
+        </form>
+    </div>
+
     <h4>Comments:</h4>
     {% for comment in post.comments.all %}
         <div class="comment-card">

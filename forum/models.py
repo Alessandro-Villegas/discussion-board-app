@@ -8,6 +8,9 @@ class Post(models.Model):
     author = models.CharField(max_length = 100)
     created_at = models.DateTimeField(default = timezone.now)
 
+    upvotes = models.IntegerField(default=0)
+    downvotes = models.IntegerField(default=0)
+
     def __str__(self):
         return self.title
     
