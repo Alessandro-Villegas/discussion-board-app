@@ -10,7 +10,7 @@ This app focuses on UTRGV students and enables users to post and view announceme
 ## Tech Stack
 - Frontend HTML, CSS (Django Templates), Bootstrap
 - Backend: Python (Django Framework)
-- Database: SQLite (development)
+- Database: SQLite (local) & Railway with Postgres (devlopment)
 - Version Control: Git & GitHub
 - Environment: Virtual Environment (virt)
 

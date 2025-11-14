@@ -38,7 +38,7 @@
 |---|---------|-------------|------------|----------|--------|
 | 3.1 | Implement comment/reply system | [Alessandro] | Nov 8 | Nov 21 | ✅ Done |
 | 3.2 | Allow editing and deletion of comments | [Alessandro] | Nov 15 | Nov 21 | ✅ Done |
-| 3.3 | Implement Upvote/Downvote system | [Name] | Nov 22 | Nov 28 | 📋 To Do |
+| 3.3 | Implement Upvote/Downvote system | [Andres] | Nov 22 | Nov 28 | ✅ Done |
 | 3.4 | Add a sorting system | [Name] | Nov 22 | Nov 28 | 📋 To Do |
 
 ---
