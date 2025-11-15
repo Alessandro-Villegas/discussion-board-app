@@ -1,0 +1,21 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Student Hub</title>
+    <link rel="stylesheet" href="{% static 'student_hub/style.css' %}">
+</head>
+<body>
+<header>
+    <h1>Welcome to Student Hub</h1>
+</header>
+
+<div>
+    <a href="{% url 'forum-home' %}" class="btn btn-primary">Go to Forum</a>
+    <a href="{% url 'schedule-home' %}" class="btn btn-secondary">View Schedule</a>
+    <a href="{% url 'events-home' %}" class="btn btn-info">View Events</a>
+</div>
+</body>
+</html>
+

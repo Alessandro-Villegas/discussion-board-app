@@ -16,11 +16,15 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from django.views.generic import RedirectView
+from student_hub import views as hub_views
+from forum import views as forum_views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('', hub_views.student_hub_home, name='student-hub-home'),  # root goes to Student Hub
     path('forum/', include('forum.urls')),
-    path('', RedirectView.as_view(url = '/forum/', permanent = True)), # redirect home
-    path('', include('forum.urls')),
+    path('schedule/', include('schedule.urls')),
+    path('events/', include('events.urls')),
+    path('bulletin/', include('bulletin.urls')),
+    path('emergency/', include('emergency.urls')),
 ]

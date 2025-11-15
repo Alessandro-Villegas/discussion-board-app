@@ -2,9 +2,18 @@ from django.shortcuts import render, get_object_or_404, redirect
 from .models import Post, Comment
 from .forms import PostForm, CommentForm
 
-def home(request):
+
+def forum_home(request):
     items = Post.objects.all()
-    return render(request, 'forum/home.html', {'items': items})
+    form = PostForm()
+    
+    if request.method == 'POST':
+        form = PostForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('forum-home')
+    
+    return render(request, 'forum/home.html', {'items': items, 'form': form})
 
 def post_detail(request, pk):
     post = get_object_or_404(Post, pk=pk)

@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container mt-4">
+  <h2 class="mb-3">Weekly Activities Schedule</h2>
+
+  <a href="{% url 'add-activity' %}" class="btn btn-success mb-3">➕ Add New Activity</a>
+
+  {% for activity in activities %}
+  <div class="card mb-2 p-3">
+    <h5>{{ activity.title }}</h5>
+    <p><strong>Day:</strong> {{ activity.day_of_week }}</p>
+    <p><strong>Time:</strong> {{ activity.start_time }} - {{ activity.end_time }}</p>
+    <p>{{ activity.description }}</p>
+    <a href="{% url 'edit-activity' activity.pk %}" class="btn btn-primary btn-sm">Edit</a>
+    <a href="{% url 'delete-activity' activity.pk %}" class="btn btn-danger btn-sm">Delete</a>
+  </div>
+  {% empty %}
+  <p>No activities scheduled this week.</p>
+  {% endfor %}
+</div>
+{% endblock %}
+

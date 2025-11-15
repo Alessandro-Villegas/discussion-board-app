@@ -1,0 +1,29 @@
+body { font-family: Arial, sans-serif; background:#f4f7fa; color:#222; margin:0; }
+
+.container { max-width:900px; margin:1.5rem auto; padding:0 1rem; }
+
+.nav { background:darkorange; color:white; padding:0.5rem 0; }
+
+.nav .container { display:flex; align-items:center; justify-content:space-between; }
+
+.brand { font-weight:bold; color:white; text-decoration:none; margin-right:1rem; }
+
+.nav-links { list-style:none; display:flex; gap:0.7rem; margin:0; padding:0; }
+
+.nav-links li a { color:white; text-decoration:none; padding:0.4rem 0.6rem; }
+
+.nav-right { color:white; }
+
+.post-card { background:white; border-left:5px solid darkorange; padding:1rem; border-radius:8px; margin-bottom:1rem; box-shadow:0 6px 18px rgba(0,0,0,0.06); }
+
+.comment-card { background:#f0f8ff; padding:0.8rem; border-radius:6px; margin-bottom:0.6rem; border-left:3px solid #004aad; }
+
+.btn { display:inline-block; padding:0.4rem 0.8rem; border-radius:6px; text-decoration:none; color:white; }
+
+.btn-primary { background:#004aad; }
+
+.btn-warning { background:#f0ad4e; color:white; }
+
+.btn-danger { background:#d9534f; color:white; }
+
+.small { font-size:0.85rem; color:#666; }

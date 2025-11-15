@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container mt-4">
+  <h2>Campus Bulletin Board</h2>
+  <a href="{% url 'bulletin-add' %}" class="btn btn-success mb-3">📣 Post Announcement</a>
+
+  {% for post in announcements %}
+  <div class="card mb-3 p-3">
+    <h4>{{ post.title }}</h4>
+    <p>{{ post.body }}</p>
+    <p class="text-muted">Posted by {{ post.author }} on {{ post.created_at|date:"F j, Y, g:i a" }}</p>
+  </div>
+  {% empty %}
+  <p>No announcements yet.</p>
+  {% endfor %}
+</div>
+{% endblock %}

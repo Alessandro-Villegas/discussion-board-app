@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Emergency & Quick Access</h1>
+<div class="grid">
+  {% for c in contacts %}
+    <div class="post-card">
+      <h4>{{ c.name }}</h4>
+      <p><strong>Department:</strong> {{ c.department }}</p>
+      <p><strong>Phone:</strong> <a href="tel:{{ c.phone }}">{{ c.phone }}</a></p>
+      {% if c.link %}<a class="btn btn-primary" href="{{ c.link }}" target="_blank">Visit</a>{% endif %}
+    </div>
+  {% empty %}
+    <p>No emergency contacts yet.</p>
+  {% endfor %}
+</div>
+{% endblock %}

@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="post-card">
+  <h2>{{ event.title }}</h2>
+  <p>{{ event.description }}</p>
+  <p><strong>Date:</strong> {{ event.date }} {% if event.time %} at {{ event.time }}{% endif %}</p>
+  <p><strong>Category:</strong> {{ event.get_category_display }}</p>
+  <p><strong>Location:</strong> {{ event.location }}</p>
+  {% if event.map_link %}
+    <a class="btn btn-primary" target="_blank" href="{{ event.map_link }}">View Map</a>
+  {% endif %}
+  <a href="{% url 'events-list' %}" class="btn btn-link">Back</a>
+</div>
+{% endblock %}

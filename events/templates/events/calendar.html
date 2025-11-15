@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container mt-4">
+  <h2>Campus Events Calendar</h2>
+
+  <div id="map" style="height: 400px;" class="mb-3"></div>
+
+  <h4>Subscribe to Event Categories</h4>
+  <form method="post">
+    {% csrf_token %}
+    <label><input type="checkbox" name="categories" value="academic"> Academic</label><br>
+    <label><input type="checkbox" name="categories" value="sports"> Sports</label><br>
+    <label><input type="checkbox" name="categories" value="clubs"> Clubs</label><br>
+    <button type="submit" class="btn btn-primary mt-2">Save Preferences</button>
+  </form>
+
+  <script>
+    // Example: Use Leaflet.js for campus map
+    const map = L.map('map').setView([26.3075, -98.1733], 15); // UTRGV Edinburg coords
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      maxZoom: 19
+    }).addTo(map);
+  </script>
+</div>
+{% endblock %}
