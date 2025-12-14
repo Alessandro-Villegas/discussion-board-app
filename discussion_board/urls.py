@@ -16,6 +16,8 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from django.conf import settings
+from django.conf.urls.static import static
 from student_hub import views as hub_views
 from forum import views as forum_views
 
@@ -28,6 +30,8 @@ urlpatterns = [
     path('bulletin/', include('bulletin.urls')),
     path('emergency/', include('emergency.urls')),
     path("accounts/", include("allauth.urls")),
-    path('', include('accounts.urls')),  # new accounts app urls
-]
+    path('accounts/', include('accounts.urls')),  # new accounts app urls
+    ] 
 
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

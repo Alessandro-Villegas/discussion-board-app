@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Profile{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2>{{ user.username }}'s Profile</h2>
+
+    <div class="row mt-3">
+        <div class="col-md-3">
+            {% if user.profile.avatar %}
+            <img src="{{ user.profile.avatar.url }}" class="profile-avatar img-fluid rounded" alt="Avatar">
+            {% else %}
+            <img src="{% static 'default-avatar.png' %}" class="profile-avatar img-fluid rounded" alt="Avatar">
+            {% endif %}
+        </div>
+
+        <div class="col-md-9">
+            <p><strong>Email:</strong> {{ user.email }}</p>
+
+            {% if user.profile %}
+            <p><strong>Major:</strong> {{ user.profile.major }}</p>
+            <p><strong>Year:</strong> {{ user.profile.year }}</p>
+            {% else %}
+            <p class="text-muted">Profile information not available.</p>
+            {% endif %}
+        </div>
+    </div>
+        <div>
+            <hr>
+            <h4>Edit Profile</h4>
+
+            <form method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button class="btn btn-primary">Save Changes</button>
+            </form>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Account Settings{% endblock %}
+
+{% block content %}
+<div class="container d-flex justify-content-center mt-5">
+    <div class="card shadow-sm p-4" style="max-width: 420px; width: 100%;">
+        <h3 class="text-center mb-3">Account Settings</h3>
+
+        <ul class="list-group mb-4">
+            <li class="list-group-item">
+                <a href="{% url 'account_email' %}">
+                    <i class="bi bi-envelope"></i> Change Email
+                </a>
+            </li>
+            <li class="list-group-item">
+                <a href="{% url 'account_change_password' %}">
+                    <i class="bi bi-key"></i> Change Password
+                </a>
+            </li>
+            <li class="list-group-item">
+                <a href="{% url 'account_reset_password' %}">
+                    <i class="bi bi-arrow-repeat"></i> Reset Password
+                </a>
+            </li>
+        </ul>
+
+        <hr>
+
+        <p class="text-center text-muted">
+            Are you sure you want to sign out?
+        </p>
+
+        <form method="post" action="{% url 'account_logout' %}" class="text-center">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-danger w-100">
+                Sign Out
+            </button>
+        </form>
+    </div>
+</div>
+{% endblock %}

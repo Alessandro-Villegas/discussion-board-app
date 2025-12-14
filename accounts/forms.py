@@ -8,6 +8,11 @@ class CustomSignupForm(SignupForm):
     year = forms.CharField(max_length=20, label="Year")
     avatar = forms.ImageField(required=False)
 
+class ProfileUpdateForm(forms.ModelForm):
+    class Meta:
+        model = Profile
+        fields = ['avatar', 'major', 'year']
+        
     def clean_email(self):
         email = self.cleaned_data["email"].lower()
         # domain restrictions to UTRGV

@@ -9,13 +9,24 @@ from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from django.utils.encoding import force_bytes, force_str
 from django.contrib.auth.tokens import default_token_generator
 from accounts.models import Profile 
-from .forms import CustomSignupForm
+from .forms import CustomSignupForm, ProfileUpdateForm
 
 
 @login_required
 def profile_view(request):
-    """Display the logged-in user's profile."""
-    return render(request, 'accounts/profile.html', {'user': request.user})
+    profile = request.user.profile
+
+    if request.method == "POST":
+        form = ProfileUpdateForm(request.POST, request.FILES, instance=profile)
+        if form.is_valid():
+            form.save()
+            return redirect("profile")
+    else:
+        form = ProfileUpdateForm(instance=profile)
+
+    return render(request, 'accounts/profile.html', {
+        'form': form
+    })
 
 
 def signup(request):

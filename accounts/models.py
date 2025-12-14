@@ -13,7 +13,7 @@ class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     major = models.CharField(max_length=100, blank=True)
     year = models.CharField(max_length=20, blank=True)
-    avatar = models.ImageField(upload_to="avatars/", blank=True)
+    avatar = models.ImageField(upload_to="avatars/", default="avatars/default.png", blank=True, null=True)
     role = models.CharField(max_length=20, choices=ROLE_CHOICES, default='student')
 
     def __str__(self):
