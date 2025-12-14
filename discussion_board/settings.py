@@ -157,6 +157,9 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [BASE_DIR / "static"]
+STATIC_ROOT = BASE_DIR / "staticfiles"
+STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
+
 # STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 # Default primary key field type
@@ -166,14 +169,26 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # Local testing student emails
 EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
-DEFAULT_FROM_EMAIL = "noreply@utrgv.edu"
+# DEFAULT_FROM_EMAIL = "noreply@utrgv.edu"
+# SITE_DOMAIN = 'http://127.0.0.1:8000'
 
-SITE_DOMAIN = "http://127.0.0.1:8000"
+# Production email settings for UTRGV
+# EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+# EMAIL_HOST = "smtp.gmail.com"
+# EMAIL_PORT = 587
+# EMAIL_USE_TLS = True
+# EMAIL_HOST_USER = "yourappsender@gmail.com"
+# EMAIL_HOST_PASSWORD = os.getenv("GMAIL_APP_PASSWORD")
+# DEFAULT_FROM_EMAIL = "Student Hub <yourappsender@gmail.com>"
+
+# Your site domain for verification links
+SITE_DOMAIN = 'https://yourdomain.com'  # Replace with your deployed domain
+
 
 # Redirect URLs after login/logout
-LOGIN_URL = "login"
+LOGIN_URL = "account_login"
 LOGIN_REDIRECT_URL = "student-hub-home"
-LOGOUT_REDIRECT_URL = "login"
+LOGOUT_REDIRECT_URL = "account_login"
 
 # Use your custom signup form
 ACCOUNT_FORMS = {
@@ -181,9 +196,20 @@ ACCOUNT_FORMS = {
 }
 
 # Optional email domain restriction for @utrgv.edu
-ACCOUNT_SIGNUP_FIELDS = ['email*', 'username*', 'password1*', 'password2*']
-ACCOUNT_EMAIL_VERIFICATION = 'mandatory' 
-ACCOUNT_FORMS = {'signup': 'accounts.forms.CustomSignupForm'}
+
+# ACCOUNT_SIGNUP_FIELDS = ['email*', 'username*', 'password1*', 'password2*']
+ACCOUNT_EMAIL_VERIFICATION = 'optional' 
+ACCOUNT_SIGNUP_FIELDS = [
+    "email*",
+    "username*",
+    "password1*",
+    "password2*",
+]
+# ACCOUNT_ALLOWED_EMAIL_DOMAINS = ["utrgv.edu"]
+
+# automatically log in user after signup
+# ACCOUNT_SIGNUP_REDIRECT_URL = '/profile/'  
+
 
 # Google OAuth
 SOCIALACCOUNT_PROVIDERS = {

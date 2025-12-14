@@ -1,10 +1,11 @@
 /* Base styling */
-body {
+body, html {
     font-family: Arial, sans-serif;
-    background: #f4f7fa;
-    color: #222;
     margin: 0;
     line-height: 1.6;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #000000, #FF7F00); /* black to UTRGV orange gradient */
+    color: #222;
 }
 
 /* Container */
@@ -16,97 +17,89 @@ body {
 
 /* Navigation */
 .nav {
-    background: #ed6c02; /* UTRGV orange */
+    background: #FF7F00; /* UTRGV orange */
     color: white;
     padding: 0.7rem 0;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
 }
 
 .nav .container {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    flex-wrap: wrap;
 }
 
 .nav a {
     color: white;
     text-decoration: none;
-}
-
-.nav a:hover {
-    text-decoration: underline;
-}
-
-/* Dashboard cards */
-.dashboard {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 1.5rem;
-    margin-top: 2rem;
-}
-
-.card {
-    background: white;
-    border-radius: 10px;
-    padding: 1.5rem;
-    text-align: center;
-    box-shadow: 0 6px 18px rgba(0,0,0,0.06);
-    transition: transform 0.2s, box-shadow 0.2s;
-}
-
-.card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 25px rgba(0,0,0,0.12);
-}
-
-.card h3 {
-    margin-bottom: 0.75rem;
-}
-
-.card p {
-    color: #555;
-    margin-bottom: 1rem;
-}
-
-.card a {
-    display: inline-block;
-    padding: 0.5rem 1rem;
-    border-radius: 6px;
-    text-decoration: none;
-    color: white;
     font-weight: 500;
 }
 
-.btn-primary { background: orange; }
-.btn-secondary { background: #6c757d; }
-.btn-info { background: #17a2b8; }
-.btn-warning { background: #f0ad4e; }
-.btn-danger { background: #d9534f; }
+.nav a:hover {
+    color: #000;
+    text-decoration: underline;
+}
 
 /* Footer */
 footer {
     margin-top: 3rem;
     padding: 1.5rem 0;
-    background: #f1f1f1;
-    color: #666;
+    background: #222;
+    color: #ccc;
+    text-align: center;
 }
 
-/* Responsive */
-@media (max-width: 768px) {
-    .nav .container {
-        flex-direction: column;
-        gap: 0.5rem;
-    }
+/* Dashboard / general cards */
+.card {
+    background: rgba(255,255,255,0.95);
+    border-radius: 10px;
+    padding: 1.5rem;
+    text-align: center;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.1);
+    transition: transform 0.2s, box-shadow 0.2s;
+    color: #000;
+}
 
-    .nav ul {
-        flex-direction: column;
-        width: 100%;
-    }
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+}
 
-    .nav ul li a {
-        text-align: center;
-        padding: 0.5rem;
-    }
+.card-header {
+    background-color: #FF7F00;
+    color: #fff;
+    font-weight: bold;
+    font-size: 1.2rem;
+    border-radius: 8px 8px 0 0;
+    padding: 0.75rem 1rem;
+}
+
+.card-footer {
+    background-color: rgba(255,127,0,0.2);
+    border-radius: 0 0 8px 8px;
+}
+
+/* Buttons */
+.btn-primary {
+    background-color: #FF7F00;
+    border: none;
+    color: #fff;
+    font-weight: 600;
+    transition: background-color 0.2s;
+}
+
+.btn-primary:hover {
+    background-color: #e56b00;
+}
+
+.btn-secondary {
+    background-color: #6c757d;
+    border: none;
+}
+
+.btn-secondary:hover {
+    background-color: #5a6268;
 }
 
 .btn-outline-dark {
@@ -122,33 +115,48 @@ footer {
     color: #fff;
 }
 
-.card {
+/* Forms */
+form {
+    background-color: rgba(255,255,255,0.95);
+    padding: 20px;
     border-radius: 10px;
-    margin-bottom: 1.5rem;
+    color: #000;
 }
 
-.card-header {
-    font-weight: bold;
-    font-size: 1.2rem;
+input.form-control, select.form-select, textarea.form-control {
+    border-radius: 5px;
+    margin-bottom: 10px;
 }
 
-.btn-primary {
-    background-color: orange;
-    border: none;
-    transition: background-color 0.2s;
+/* Dashboard cards grid */
+.dashboard {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2rem;
 }
 
-.btn-primary:hover {
-    background-color: #003375;
+/* Responsive */
+@media (max-width: 768px) {
+    .nav .container {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .nav ul {
+        flex-direction: column;
+        width: 100%;
+        padding-left: 0;
+    }
+
+    .nav ul li a {
+        text-align: center;
+        padding: 0.5rem;
+    }
 }
 
-.btn-secondary {
-    background-color: #6c757d;
-    border: none;
+/* Map */
+#map {
+    height: 400px;
+    width: 100%;
 }
-
-.btn-secondary:hover {
-    background-color: #5a6268;
-}
-
-#map { height: 400px; width: 100%; }

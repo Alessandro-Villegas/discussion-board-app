@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block title %}Verify Your Email{% endblock %}
+
+{% block content %}
+<div class="container mt-5" style="max-width: 600px;">
+    <div class="card shadow-sm border-0">
+        <div class="card-header bg-primary text-white">
+            <h4 class="mb-0">Check Your Email</h4>
+        </div>
+        <div class="card-body">
+            <p>An email has been sent to your address with a verification link. Please check your inbox and follow the instructions to activate your account.</p>
+            <a href="{% url 'account_login' %}" class="btn btn-primary mt-2 w-100">Go to Login</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

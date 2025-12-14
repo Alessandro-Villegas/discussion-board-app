@@ -3,14 +3,9 @@ from .views import signup, verify_email, profile_view
 from django.contrib.auth import views as auth_views
 
 urlpatterns = [
-    path("signup/", signup, name="signup"),
-    path("verify/<uidb64>/<token>/", verify_email, name="verify-email"),
-
-    path("login/", auth_views.LoginView.as_view(template_name="accounts/login.html"), name="login"),
-    path("logout/", auth_views.LogoutView.as_view(), name="logout"),
-
-    path('accounts/', include('allauth.urls')),  # allauth handles login/signup/logout/password reset
-    path('profile/', profile_view, name='profile'),
+    
+    path("accounts/", include("allauth.urls")),
+    path("profile/", profile_view, name="profile"),
 
     # Password reset
     path("password-reset/", auth_views.PasswordResetView.as_view(
