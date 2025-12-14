@@ -11,10 +11,10 @@
       <h5 style="color: #667eea;">{{ activity.title }}</h5>
       <p><strong>Day:</strong> {{ activity.get_day_of_week_display|default:activity.day_of_week }}</p>
       <p><strong>Time:</strong> 
-        {% if activity.start_time or activity.end_time %}
+        {% if activity.start_time and activity.end_time %}
           {{ activity.start_time|time:"g:i A" }} - {{ activity.end_time|time:"g:i A" }}
         {% else %}
-          Time not set
+          <span class="text-danger">Time not set</span>
         {% endif %}
       </p>
       <p class="text-muted mb-3">{{ activity.description }}</p>

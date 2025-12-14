@@ -18,7 +18,7 @@ def schedule_home(request):
         weekday_index = ['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday'].index(a.day_of_week)
         days_ahead = (weekday_index - now.weekday() + 7) % 7
         next_date = today + datetime.timedelta(days=days_ahead)
-        dt = datetime.datetime.combine(next_date, a.time)
+        dt = datetime.datetime.combine(next_date, a.start_time)
         dt = timezone.make_aware(dt, timezone.get_current_timezone())
         upcoming.append({'id':a.pk, 'title':a.title, 'datetime': dt.isoformat(), 'description': a.description})
     return render(request, 'schedule/home.html', {'activities': activities, 'upcoming': upcoming})

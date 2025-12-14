@@ -30,7 +30,7 @@ urlpatterns = [
     path('bulletin/', include('bulletin.urls')),
     path('emergency/', include('emergency.urls')),
     path("accounts/", include("allauth.urls")),
-    # path('accounts/', include('accounts.urls')),  # new accounts app urls
+    path('accounts/', include('accounts.urls')),  # new accounts app urls
     ] 
 
 if settings.DEBUG:

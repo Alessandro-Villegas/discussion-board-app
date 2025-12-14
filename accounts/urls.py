@@ -1,12 +1,13 @@
+from django import views
 from django.urls import path, include
 from .views import signup, verify_email, profile_view
 from django.contrib.auth import views as auth_views
 
 urlpatterns = [
     
-    path("accounts/", include("allauth.urls")),
+    # path("accounts/", include("allauth.urls")),
     path("profile/", profile_view, name="profile"),
-
+    
     # Password reset
     path("password-reset/", auth_views.PasswordResetView.as_view(
         template_name="accounts/password_reset.html"

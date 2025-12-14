@@ -1,63 +1,63 @@
-{% load static %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>{{ post.title }}</title>
-    <link rel="stylesheet" href="{% static 'forum/forum.css' %}">
-</head>
-<body>
+{% extends "base.html" %}
 
-<div class="container mt-5 post-card">
-    <h1>{{ post.title }}</h1>
-    <div class="post-meta">by {{ post.author }} on {{ post.created_at|date:"M d, Y H:i" }}</div>
-    <p>{{ post.content }}</p>
+{% block title %}{{ post.title }}{% endblock %}
 
-    <!-- Post Buttons -->
-    <div class="mb-3">
-        <a href="{% url 'edit-post' post.pk %}" class="btn btn-sm btn-warning">Edit Post</a>
-        <a href="{% url 'delete-post' post.pk %}" class="btn btn-sm btn-danger">Delete Post</a>
-    </div>
+{% block content %}
+<div class="content-card">
 
-    <hr>
-    <div class="vote-section my-3">
-        <form action="{% url 'upvote-post' post.pk %}" method="post" style="display:inline;">
-            {% csrf_token %}
-            <button type="submit" class="btn btn-success">⬆️ Upvote ({{ post.upvotes }})</button>
-        </form>
+  <h1>{{ post.title }}</h1>
+  <div class="post-meta mb-3">
+    by {{ post.author }} · {{ post.created_at|date:"M d, Y H:i" }}
+  </div>
 
-        <form action="{% url 'downvote-post' post.pk %}" method="post" style="display:inline;">
-            {% csrf_token %}
-            <button type="submit" class="btn btn-danger">⬇️ Downvote ({{ post.downvotes }})</button>
-        </form>
-    </div>
+  <p>{{ post.content }}</p>
 
-    <h4>Comments:</h4>
-    {% for comment in post.comments.all %}
-        <div class="comment-card">
-            <div class="comment-author">{{ comment.author }}</div>
-            <div class="comment-date">{{ comment.created_at|date:"M d, Y H:i" }}</div>
-            <div class="comment-text">{{ comment.text }}</div>
+  <div class="mb-3">
+    <a class="btn btn-sm btn-warning" href="{% url 'edit-post' post.pk %}">Edit</a>
+    <a class="btn btn-sm btn-danger" href="{% url 'delete-post' post.pk %}">Delete</a>
+  </div>
 
-            <div class="mt-1">
-                <a href="{% url 'edit-comment' comment.pk %}" class="btn btn-sm btn-warning">Edit</a>
-                <a href="{% url 'delete-comment' comment.pk %}" class="btn btn-sm btn-danger">Delete</a>
-            </div>
-        </div>
-    {% empty %}
-        <p>No comments yet.</p>
-    {% endfor %}
+  <hr>
 
-    <hr>
-    <h4>Add a Comment:</h4>
-    <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit" class="btn btn-primary">Post Comment</button>
+  <div class="mb-4">
+    <form method="post" action="{% url 'upvote-post' post.pk %}" class="d-inline">
+      {% csrf_token %}
+      <button class="btn btn-success btn-sm">⬆ {{ post.upvotes }}</button>
     </form>
+    <form method="post" action="{% url 'downvote-post' post.pk %}" class="d-inline">
+      {% csrf_token %}
+      <button class="btn btn-danger btn-sm">⬇ {{ post.downvotes }}</button>
+    </form>
+  </div>
 
-    <a href="{% url 'forum-home' %}" class="btn btn-link mt-3">← Back to all posts</a>
+  <h4>Comments</h4>
+
+  {% for comment in post.comments.all %}
+    <div class="comment-card">
+      <strong>{{ comment.author }}</strong>
+      <div class="post-meta">{{ comment.created_at|date:"M d, Y H:i" }}</div>
+      <p class="mb-1">{{ comment.text }}</p>
+
+      <a class="btn btn-sm btn-warning" href="{% url 'edit-comment' comment.pk %}">Edit</a>
+      <a class="btn btn-sm btn-danger" href="{% url 'delete-comment' comment.pk %}">Delete</a>
+    </div>
+  {% empty %}
+    <p class="text-muted">No comments yet.</p>
+  {% endfor %}
+
+  <hr>
+
+  <h4>Add Comment</h4>
+  <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button class="btn btn-primary">Post Comment</button>
+  </form>
+
 </div>
 
-</body>
-</html>
+  <a href="{% url 'forum-home' %}" class="btn btn-link mt-3">
+    ← Back to Forum
+  </a>
+</div>
+{% endblock %}
