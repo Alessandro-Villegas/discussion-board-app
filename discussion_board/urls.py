@@ -30,8 +30,9 @@ urlpatterns = [
     path('bulletin/', include('bulletin.urls')),
     path('emergency/', include('emergency.urls')),
     path("accounts/", include("allauth.urls")),
-    path('accounts/', include('accounts.urls')),  # new accounts app urls
+    # path('accounts/', include('accounts.urls')),  # new accounts app urls
     ] 
 
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

@@ -1,0 +1,91 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Email Addresses{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="auth-card mx-auto">
+        <h2 class="text-center mb-4" style="color: #FF7F00;">Email Addresses</h2>
+
+        {% if messages %}
+        <div class="mb-3">
+            {% for message in messages %}
+            <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+                {{ message }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            </div>
+            {% endfor %}
+        </div>
+        {% endif %}
+
+        <p class="mb-3">The following email addresses are associated with your account:</p>
+
+        {% if user.emailaddress_set.all %}
+        <form method="post" action="{% url 'account_email' %}">
+            {% csrf_token %}
+            
+            <div class="mb-4">
+                {% for emailaddress in user.emailaddress_set.all %}
+                <div class="form-check mb-2 p-3 border rounded">
+                    <input class="form-check-input" type="radio" name="email" 
+                           id="email_radio_{{ forloop.counter }}" 
+                           value="{{ emailaddress.email }}"
+                           {% if emailaddress.primary %}checked{% endif %}>
+                    <label class="form-check-label" for="email_radio_{{ forloop.counter }}">
+                        <strong>{{ emailaddress.email }}</strong>
+                        {% if emailaddress.verified %}
+                        <span class="badge bg-success ms-2">Verified</span>
+                        {% else %}
+                        <span class="badge bg-warning ms-2">Unverified</span>
+                        {% endif %}
+                        {% if emailaddress.primary %}
+                        <span class="badge bg-primary ms-2">Primary</span>
+                        {% endif %}
+                    </label>
+                    
+                    <div class="mt-2">
+                        {% if not emailaddress.primary %}
+                        <button type="submit" name="action_primary" value="{{ emailaddress.email }}" 
+                                class="btn btn-sm btn-outline-primary">Make Primary</button>
+                        {% endif %}
+                        
+                        {% if not emailaddress.verified %}
+                        <button type="submit" name="action_send" value="{{ emailaddress.email }}" 
+                                class="btn btn-sm btn-outline-secondary">Re-send Verification</button>
+                        {% endif %}
+                        
+                        {% if not emailaddress.primary %}
+                        <button type="submit" name="action_remove" value="{{ emailaddress.email }}" 
+                                class="btn btn-sm btn-outline-danger">Remove</button>
+                        {% endif %}
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </form>
+        {% else %}
+        <p class="text-muted">No email addresses associated with your account.</p>
+        {% endif %}
+
+        <hr>
+
+        <h4 class="mb-3">Add Email Address</h4>
+        <form method="post" action="{% url 'account_email' %}">
+            {% csrf_token %}
+            <div class="mb-3">
+                <label for="id_email" class="form-label">Email:</label>
+                <input type="email" name="email" id="id_email" class="form-control" 
+                       placeholder="Email address" required>
+            </div>
+            <button type="submit" name="action_add" class="btn btn-primary w-100">
+                Add Email
+            </button>
+        </form>
+
+        <div class="mt-4 text-center">
+            <a href="{% url 'profile' %}" class="btn btn-outline-secondary">Back to Profile</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

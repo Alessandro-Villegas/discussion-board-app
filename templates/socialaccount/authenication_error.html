@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Authentication Error{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="auth-card mx-auto">
+        <h2 class="text-center mb-4" style="color: #dc3545;">
+            Authentication Error
+        </h2>
+
+        <div class="alert alert-danger">
+            <p class="mb-0">
+                An error occurred while trying to authenticate with {{ provider.name }}.
+            </p>
+        </div>
+
+        <div class="text-center mt-4">
+            <a href="{% url 'account_login' %}" class="btn btn-primary">
+                Back to Login
+            </a>
+        </div>
+    </div>
+</div>
+{% endblock %}

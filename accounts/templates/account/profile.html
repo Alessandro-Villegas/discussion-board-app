@@ -5,37 +5,45 @@
 
 {% block content %}
 <div class="container mt-5">
-    <h2>{{ user.username }}'s Profile</h2>
+    <div class="auth-card mx-auto" style="max-width: 700px;">
+        <h2 class="text-center mb-4" style="color: #FF7F00;">{{ user.username }}'s Profile</h2>
 
-    <div class="row mt-3">
-        <div class="col-md-3">
-            {% if user.profile.avatar %}
-            <img src="{{ user.profile.avatar.url }}" class="profile-avatar img-fluid rounded" alt="Avatar">
-            {% else %}
-            <img src="{% static 'default-avatar.png' %}" class="profile-avatar img-fluid rounded" alt="Avatar">
-            {% endif %}
+        <div class="row mt-3">
+            <div class="col-md-4 text-center mb-3">
+                {% if user.profile.avatar %}
+                <img src="{{ user.profile.avatar.url }}" class="profile-avatar img-fluid rounded shadow" alt="Avatar">
+                {% else %}
+                <img src="{% static 'default-avatar.png' %}" class="profile-avatar img-fluid rounded shadow" alt="Avatar">
+                {% endif %}
+            </div>
+
+            <div class="col-md-8">
+                <div class="card border-0 bg-light p-3">
+                    <p class="mb-2"><strong>Email:</strong> {{ user.email }}</p>
+
+                    {% if user.profile %}
+                    <p class="mb-2"><strong>Major:</strong> {{ user.profile.major|default:"Not set" }}</p>
+                    <p class="mb-0"><strong>Year:</strong> {{ user.profile.year|default:"Not set" }}</p>
+                    {% else %}
+                    <p class="text-muted mb-0">Profile information not available.</p>
+                    {% endif %}
+                </div>
+            </div>
         </div>
 
-        <div class="col-md-9">
-            <p><strong>Email:</strong> {{ user.email }}</p>
+        <hr class="my-4">
 
-            {% if user.profile %}
-            <p><strong>Major:</strong> {{ user.profile.major }}</p>
-            <p><strong>Year:</strong> {{ user.profile.year }}</p>
-            {% else %}
-            <p class="text-muted">Profile information not available.</p>
-            {% endif %}
+        <h4 class="mb-3" style="color: #FF7F00;">Edit Profile</h4>
+
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="btn btn-primary w-100 mt-2">Save Changes</button>
+        </form>
+
+        <div class="mt-4 text-center">
+            <a href="{% url 'student-hub-home' %}" class="btn btn-outline-secondary">Back to Home</a>
         </div>
     </div>
-        <div>
-            <hr>
-            <h4>Edit Profile</h4>
-
-            <form method="POST" enctype="multipart/form-data">
-                {% csrf_token %}
-                {{ form.as_p }}
-                <button class="btn btn-primary">Save Changes</button>
-            </form>
-        </div>
-    </div>
+</div>
 {% endblock %}

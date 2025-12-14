@@ -56,12 +56,33 @@ INSTALLED_APPS = [
     'allauth.socialaccount',
     'allauth.socialaccount.providers.google', # Google provider
     'allauth.socialaccount.providers.github',  # GitHub provider
+    # other third-party apps
     'crispy_forms',
     'crispy_bootstrap5',
 ]
 
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
 CRISPY_TEMPLATE_PACK = "bootstrap5"
+
+# Google OAuth & GitHub OAuth settings
+SOCIALACCOUNT_PROVIDERS = {
+    'google': {
+        'SCOPE': [
+            'profile',
+            'email',
+        ],
+        'AUTH_PARAMS': {
+            'access_type': 'online',
+        }
+    },
+    'github': {
+        'SCOPE': [
+            'user',
+            'repo',
+            'read:org',
+        ],
+    }
+}
 
 SITE_ID = 1
 AUTHENTICATION_BACKENDS = [
@@ -214,16 +235,18 @@ ACCOUNT_SIGNUP_FIELDS = [
 # automatically log in user after signup
 # ACCOUNT_SIGNUP_REDIRECT_URL = '/profile/'  
 
-
-# Google OAuth
-SOCIALACCOUNT_PROVIDERS = {
-    'google': {
-        'SCOPE': [
-            'profile',
-            'email',
-        ],
-        'AUTH_PARAMS': {
-            'access_type': 'online',
-        }
-    }
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'console': {
+            'class': 'logging.StreamHandler',
+        },
+    },
+    'loggers': {
+        'django.template': {
+            'handlers': ['console'],
+            'level': 'DEBUG',
+        },
+    },
 }

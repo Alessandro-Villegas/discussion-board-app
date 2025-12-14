@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Delete Emergency Contact{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+  <div class="card shadow-sm p-4" style="background: rgba(255,255,255,0.98); border-radius: 14px; max-width: 600px; margin: 0 auto;">
+    <h2 class="mb-4" style="color: #dc3545;">Delete Emergency Contact</h2>
+
+    <div class="alert alert-danger">
+      <p>Are you sure you want to delete <strong>{{ contact.name }}</strong>?</p>
+      <p class="mb-0">This action cannot be undone.</p>
+    </div>
+
+    <form method="POST">
+      {% csrf_token %}
+      <button type="submit" class="btn btn-danger">Yes, Delete</button>
+      <a href="{% url 'emergency-list' %}" class="btn btn-outline-secondary">Cancel</a>
+    </form>
+  </div>
+</div>
+{% endblock %}

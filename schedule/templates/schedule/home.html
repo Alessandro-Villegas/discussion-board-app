@@ -1,22 +1,33 @@
 {% extends "base.html" %}
 {% block content %}
 <div class="container mt-4">
-  <h2 class="mb-3">Weekly Activities Schedule</h2>
+  <div class="card shadow-sm p-4" style="background: rgba(255,255,255,0.98); border-radius: 14px;">
+    <h2 class="mb-3" style="color: #FF7F00;">Weekly Activities Schedule</h2>
 
-  <a href="{% url 'add-activity' %}" class="btn btn-success mb-3">➕ Add New Activity</a>
+    <a href="{% url 'add-activity' %}" class="btn btn-primary mb-3">➕ Add New Activity</a>
 
-  {% for activity in activities %}
-  <div class="card mb-2 p-3">
-    <h5>{{ activity.title }}</h5>
-    <p><strong>Day:</strong> {{ activity.day_of_week }}</p>
-    <p><strong>Time:</strong> {{ activity.start_time }} - {{ activity.end_time }}</p>
-    <p>{{ activity.description }}</p>
-    <a href="{% url 'edit-activity' activity.pk %}" class="btn btn-primary btn-sm">Edit</a>
-    <a href="{% url 'delete-activity' activity.pk %}" class="btn btn-danger btn-sm">Delete</a>
+    {% for activity in activities %}
+    <div class="card mb-3 p-3 shadow-sm">
+      <h5 style="color: #667eea;">{{ activity.title }}</h5>
+      <p><strong>Day:</strong> {{ activity.get_day_of_week_display|default:activity.day_of_week }}</p>
+      <p><strong>Time:</strong> 
+        {% if activity.start_time or activity.end_time %}
+          {{ activity.start_time|time:"g:i A" }} - {{ activity.end_time|time:"g:i A" }}
+        {% else %}
+          Time not set
+        {% endif %}
+      </p>
+      <p class="text-muted mb-3">{{ activity.description }}</p>
+      <div>
+        <a href="{% url 'edit-activity' activity.pk %}" class="btn btn-primary btn-sm">Edit</a>
+        <a href="{% url 'delete-activity' activity.pk %}" class="btn btn-danger btn-sm">Delete</a>
+      </div>
+    </div>
+    {% empty %}
+    <div class="alert alert-info">
+      <p class="mb-0">No activities scheduled this week. Click "Add New Activity" to get started!</p>
+    </div>
+    {% endfor %}
   </div>
-  {% empty %}
-  <p>No activities scheduled this week.</p>
-  {% endfor %}
 </div>
 {% endblock %}
-
