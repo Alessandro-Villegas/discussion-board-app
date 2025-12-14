@@ -14,11 +14,14 @@ class Event(models.Model):
     time = models.TimeField(blank=True, null=True)
     category = models.CharField(max_length=20, choices=CATEGORY_CHOICES)
     location = models.CharField(max_length=255, blank=True)
+    latitude = models.FloatField(blank=True, null=True)   # lat coords
+    longitude = models.FloatField(blank=True, null=True)  # long coords
     map_link = models.URLField(blank=True)
     created_by = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
 
-    def __str__(self): return f"{self.title} ({self.category}) on {self.date}"
+    def __str__(self):
+        return f"{self.title} ({self.category}) on {self.date}"
 
 class Subscription(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)

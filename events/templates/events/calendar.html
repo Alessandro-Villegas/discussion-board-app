@@ -1,25 +1,122 @@
 {% extends "base.html" %}
+{% block title %}Campus Events{% endblock %}
+
+{% block head %}
+<!-- Leaflet CSS -->
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+
+<!-- FullCalendar CSS -->
+<link href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/main.min.css" rel="stylesheet">
+
+<style>
+  #map {
+    height: 400px;
+    width: 100%;
+    margin-bottom: 2rem;
+  }
+
+  .fc-event {
+    cursor: pointer;
+  }
+
+  .subscription-btn {
+    margin-right: 0.5rem;
+    margin-bottom: 0.5rem;
+  }
+</style>
+{% endblock %}
+
 {% block content %}
 <div class="container mt-4">
-  <h2>Campus Events Calendar</h2>
+  <h2 class="mb-3">Campus Events Map</h2>
 
-  <div id="map" style="height: 400px;" class="mb-3"></div>
+  <!-- Leaflet Map -->
+  <div id="map"></div>
 
-  <h4>Subscribe to Event Categories</h4>
-  <form method="post">
-    {% csrf_token %}
-    <label><input type="checkbox" name="categories" value="academic"> Academic</label><br>
-    <label><input type="checkbox" name="categories" value="sports"> Sports</label><br>
-    <label><input type="checkbox" name="categories" value="clubs"> Clubs</label><br>
-    <button type="submit" class="btn btn-primary mt-2">Save Preferences</button>
+  <!-- FullCalendar -->
+  <div id="calendar"></div>
+
+  <h4 class="mt-4">Subscribe to Event Categories</h4>
+  {% for cat_value, cat_name in categories %}
+  <form method="post" style="display:inline-block;">
+      {% csrf_token %}
+      <input type="hidden" name="category" value="{{ cat_value }}">
+      {% if cat_value in user_subscriptions %}
+          <button type="submit" formaction="{% url 'unsubscribe-category' cat_value %}" 
+                  class="btn btn-success subscription-btn">
+              Unsubscribe from {{ cat_name }}
+          </button>
+      {% else %}
+          <button type="submit" formaction="{% url 'subscribe-category' cat_value %}" 
+                  class="btn btn-outline-primary subscription-btn">
+              Subscribe to {{ cat_name }}
+          </button>
+      {% endif %}
   </form>
-
-  <script>
-    // Example: Use Leaflet.js for campus map
-    const map = L.map('map').setView([26.3075, -98.1733], 15); // UTRGV Edinburg coords
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      maxZoom: 19
-    }).addTo(map);
-  </script>
+  {% endfor %}
 </div>
+{% endblock %}
+
+{% block scripts %}
+<!-- jQuery -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+
+<!-- Leaflet JS -->
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<!-- FullCalendar JS -->
+<script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/main.min.js"></script>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    // Initialize Leaflet map
+    const map = L.map('map').setView([26.3075, -98.1733], 15);
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        maxZoom: 19,
+        attribution: '© OpenStreetMap contributors'
+    }).addTo(map);
+
+    // // Event markers for map
+    // const events = [
+    //     {% for event in events %}
+    //     {% if event.latitude and event.longitude %}
+    //     {
+    //         title: "{{ event.title|escapejs }}",
+    //         date: "{{ event.date }}{% if event.time %}T{{ event.time|time:'H:i:s' }}{% endif %}",
+    //         url: "{% url 'event-detail' event.pk %}",
+    //         lat: {{ event.latitude }},
+    //         lng: {{ event.longitude }}
+    //     },
+    //     {% endif %}
+    //     {% endfor %}
+    // ];
+
+    events.forEach(e => {
+        const marker = L.marker([e.lat, e.lng]).addTo(map);
+        marker.bindPopup(`<b>${e.title}</b><br>${e.date}<br><a href="${e.url}" target="_blank">Details</a>`);
+    });
+
+    // Initialize FullCalendar
+    const calendarEl = document.getElementById('calendar');
+    const calendar = new FullCalendar.Calendar(calendarEl, {
+        initialView: 'dayGridMonth',
+        height: 600,
+        events: events.map(e => ({
+            title: e.title,
+            start: e.date,
+            url: e.url
+        })),
+        eventClick: function (info) {
+            info.jsEvent.preventDefault();
+            if (info.event.url) {
+                window.open(info.event.url, '_blank');
+            }
+        }
+    });
+    calendar.render();
+});
+</script>
 {% endblock %}

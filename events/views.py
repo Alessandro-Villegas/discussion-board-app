@@ -1,13 +1,23 @@
 from django.shortcuts import render, get_object_or_404, redirect
-from .models import Event, Subscription
+from .models import Event, Subscription, CATEGORY_CHOICES
 from .forms import EventForm
 from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse
 from django.urls import reverse
+from django.core.mail import send_mail
+from django.conf import settings
 
 def events_list(request):
-    events = Event.objects.order_by('date','time')
-    return render(request, 'events/calendar.html', {'events': events})
+    events = Event.objects.order_by('date', 'time')
+    user_subscriptions = []
+    if request.user.is_authenticated:
+        user_subscriptions = Subscription.objects.filter(user=request.user).values_list('category', flat=True)
+
+    return render(request, 'events/calendar.html', {
+        'events': events,
+        'categories': CATEGORY_CHOICES,
+        'user_subscriptions': user_subscriptions,
+    })
 
 def event_detail(request, pk):
     event = get_object_or_404(Event, pk=pk)
@@ -28,9 +38,19 @@ def add_event(request):
 
 @login_required
 def subscribe_category(request, category):
-    if request.method=='POST':
-        Subscription.objects.get_or_create(user=request.user, category=category)
+    if request.method == 'POST':
+        subscription, created = Subscription.objects.get_or_create(user=request.user, category=category)
+        if created:
+            # Send an email notification
+            send_mail(
+                subject=f'You subscribed to {category} events!',
+                message=f'Hi {request.user.username},\n\nYou have successfully subscribed to {category} events. You will now receive email notifications for new events in this category.',
+                from_email=settings.DEFAULT_FROM_EMAIL,
+                recipient_list=[request.user.email],
+                fail_silently=False,
+            )
     return redirect('events-list')
+
 
 @login_required
 def unsubscribe_category(request, category):
@@ -42,15 +62,16 @@ def events_json(request):
     qs = Event.objects.all()
     items = []
     for e in qs:
-        title = e.title
         start = str(e.date)
         if e.time:
             start += 'T' + e.time.strftime('%H:%M:%S')
         items.append({
             'id': e.pk,
-            'title': title,
+            'title': e.title,
             'start': start,
             'url': reverse('event-detail', args=[e.pk]),
-            'category': e.category,
+            'lat': getattr(e, 'lat', None),
+            'lng': getattr(e, 'lng', None),
+            'category': e.category
         })
     return JsonResponse(items, safe=False)

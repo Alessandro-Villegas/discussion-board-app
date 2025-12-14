@@ -6,6 +6,8 @@ urlpatterns = [
     path('json/', views.events_json, name='events-json'),
     path('add/', views.add_event, name='events-add'),
     path('<int:pk>/', views.event_detail, name='event-detail'),
+    path('json/', views.events_json, name='events-json'),  # For FullCalendar
     path('subscribe/<str:category>/', views.subscribe_category, name='subscribe-category'),
     path('unsubscribe/<str:category>/', views.unsubscribe_category, name='unsubscribe-category'),
+    
 ]

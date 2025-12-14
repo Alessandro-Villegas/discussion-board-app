@@ -1,24 +1,40 @@
 {% extends "base.html" %}
-{% load crispy_forms_tags %}
+{% load static %}
 
-{% block title %}Post Announcement{% endblock %}
+{% block title %}Bulletin{% endblock %}
 
 {% block content %}
-<div class="container mt-5" style="max-width: 600px;">
-    <div class="card shadow-sm border-0">
-        <div class="card-header bg-primary text-white">
-            <h4 class="mb-0">Post a New Announcement</h4>
-        </div>
-        <div class="card-body">
-            <form method="POST">
-                {% csrf_token %}
-                {{ form|crispy }}
-                <button type="submit" class="btn btn-primary mt-3 w-100">Post Announcement</button>
-            </form>
-        </div>
+<div class="container mt-4">
+
+    <!-- Post Announcement Button -->
+    {% if user.is_authenticated %}
+    <div class="mb-4 text-end">
+        <a href="{% url 'bulletin-add' %}" class="btn btn-success">Post Announcement</a>
     </div>
-    <div class="text-center mt-3">
-        <a href="{% url 'bulletin-home' %}" class="btn btn-secondary">Back to Bulletin</a>
-    </div>
+    {% endif %}
+
+    <!-- Announcements -->
+    {% if announcements %}
+        {% for ann in announcements %}
+        <div class="card shadow-sm mb-3">
+            <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
+                <h5 class="mb-0">{{ ann.title }}</h5>
+                <small class="text-light">{{ ann.date_posted|date:"M d, Y H:i" }}</small>
+            </div>
+            <div class="card-body">
+                <p>{{ ann.content|linebreaks }}</p>
+                <p class="small text-muted">Posted by {{ ann.posted_by.username }}</p>
+            </div>
+            {% if user == ann.posted_by %}
+            <div class="card-footer text-end">
+                <a href="{% url 'bulletin-edit' ann.pk %}" class="btn btn-sm btn-warning">Edit</a>
+            </div>
+            {% endif %}
+        </div>
+        {% endfor %}
+    {% else %}
+        <p class="text-muted">No announcements posted yet.</p>
+    {% endif %}
+
 </div>
 {% endblock %}

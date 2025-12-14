@@ -8,10 +8,9 @@ def bulletin_home(request):
     items = Announcement.objects.order_by('-date_posted')
     return render(request, 'bulletin/home.html', {'announcements': items})
 
-
 @login_required
 def add_announcement(request):
-    if request.method=='POST':
+    if request.method == 'POST':
         form = AnnouncementForm(request.POST)
         if form.is_valid():
             obj = form.save(commit=False)
@@ -25,7 +24,7 @@ def add_announcement(request):
 @login_required
 def edit_announcement(request, pk):
     ann = get_object_or_404(Announcement, pk=pk)
-    if request.method=='POST':
+    if request.method == 'POST':
         form = AnnouncementForm(request.POST, instance=ann)
         if form.is_valid():
             form.save()
