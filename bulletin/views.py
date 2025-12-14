@@ -3,9 +3,11 @@ from .models import Announcement
 from .forms import AnnouncementForm
 from django.contrib.auth.decorators import login_required
 
+@login_required
 def bulletin_home(request):
     items = Announcement.objects.order_by('-date_posted')
     return render(request, 'bulletin/home.html', {'announcements': items})
+
 
 @login_required
 def add_announcement(request):

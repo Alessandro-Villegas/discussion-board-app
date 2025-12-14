@@ -11,6 +11,8 @@ class Post(models.Model):
     upvotes = models.IntegerField(default=0)
     downvotes = models.IntegerField(default=0)
 
+    is_approved = models.BooleanField(default=False)
+
     def __str__(self):
         return self.title
     
@@ -20,6 +22,8 @@ class Comment(models.Model):
     author = models.CharField(max_length = 100)
     text = models.TextField()
     created_at = models.DateTimeField(default = timezone.now)
+
+    is_approved = models.BooleanField(default=False)
 
     def __str__(self):
         return f"Comment by {self.author} on {self.post.title}"

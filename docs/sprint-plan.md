@@ -90,9 +90,9 @@
 | Sprint | Dates | Focus | Deliverable |
 |--------|-------|-------|-------------|
 | **Sprint 1** | Oct 6 - Oct 17 | Setup & Planning | Repository & Docs ✅ |
-| **Sprint 2** | Oct 18 - Oct 31 | Auth & Basic CRUD | Topic Creation 🚧 |
-| **Sprint 3** | Nov 1 - Nov 14 | Complete CRUD | **Working Prototype** 📋 |
-| **Sprint 4** | Nov 15 - Nov 28 | External Features | Comments & Voting 📋 |
+| **Sprint 2** | Oct 18 - Oct 31 | Auth & Basic CRUD | Topic Creation ✅ |
+| **Sprint 3** | Nov 1 - Nov 14 | Complete CRUD | **Working Prototype** ✅ |
+| **Sprint 4** | Nov 15 - Nov 28 | External Features | Comments & Voting ✅ |
 | **Sprint 5** | Nov 29 - Dec 12 | Additional Features | Search & Profiles 📋 |
 | **Sprint 6** | Dec ?? - Dec ?? | Testing & Deploy | **Final Delivery** 📋 |
 
@@ -103,8 +103,8 @@
 | Date | Milestone | Status |
 |------|-----------|--------|
 | **Oct 17** | First Delivery: Repo & Documentation | ✅ Done |
-| **Nov 14** | Second Delivery: Working Prototype | 🚧 In Progress |
-| **Dec 20** | Final Delivery: Complete Application | 📋 To Do |
+| **Nov 14** | Second Delivery: Working Prototype | ✅ Done|
+| **Dec 15** | Final Delivery: Complete Application | 📋 To Do |
 
 ---
 

@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% load crispy_forms_tags %}
+{% load socialaccount %}
+
+{% block content %}
+<div class="container mt-5" style="max-width: 500px;">
+    <h2>Login</h2>
+    
+    <form method="POST">
+        {% csrf_token %}
+        {{ form|crispy }}
+        <button type="submit" class="btn btn-primary w-100 mt-2">Login</button>
+    </form>
+
+    <hr>
+    <p class="text-center">Or login with:</p>
+
+    {% if socialaccount_providers %}
+        <div class="d-flex flex-column gap-2 mt-3">
+            {% for provider in socialaccount_providers %}
+                <a href="{% provider_login_url provider.id %}" class="btn btn-outline-dark">
+                    Login with {{ provider.name }}
+                </a>
+            {% endfor %}
+        </div>
+    {% else %}
+        <p class="text-muted">No social login providers configured.</p>
+    {% endif %}
+</div>
+{% endblock %}

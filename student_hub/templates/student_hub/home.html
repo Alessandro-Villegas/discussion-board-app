@@ -1,21 +1,39 @@
+{% extends "base.html" %}
 {% load static %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Student Hub</title>
-    <link rel="stylesheet" href="{% static 'student_hub/style.css' %}">
-</head>
-<body>
-<header>
+
+{% block title %}Student Hub{% endblock %}
+
+{% block content %}
+<header class="mb-4 text-center">
     <h1>Welcome to Student Hub</h1>
+    <p class="text-muted">Access all your university resources in one place</p>
 </header>
 
-<div>
-    <a href="{% url 'forum-home' %}" class="btn btn-primary">Go to Forum</a>
-    <a href="{% url 'schedule-home' %}" class="btn btn-secondary">View Schedule</a>
-    <a href="{% url 'events-home' %}" class="btn btn-info">View Events</a>
+<div class="dashboard">
+    <div class="card">
+        <h3>Forum</h3>
+        <p>Discuss with fellow students and ask questions</p>
+        <a href="{% url 'forum-home' %}" class="btn btn-primary">Go to Forum</a>
+    </div>
+    <div class="card">
+        <h3>Schedule</h3>
+        <p>View and manage the weekly schedule</p>
+        <a href="{% url 'schedule-home' %}" class="btn btn-secondary">View Schedule</a>
+    </div>
+    <div class="card">
+        <h3>Events</h3>
+        <p>See upcoming university events</p>
+        <a href="{% url 'events-list' %}" class="btn btn-info">View Events</a>
+    </div>
+    <div class="card">
+        <h3>Bulletin</h3>
+        <p>Check campus announcements and news</p>
+        <a href="{% url 'bulletin-home' %}" class="btn btn-warning">Go to Bulletin</a>
+    </div>
+    <div class="card">
+        <h3>Emergency</h3>
+        <p>Important alerts and emergency contacts</p>
+        <a href="{% url 'emergency-list' %}" class="btn btn-danger">View Emergency</a>
+    </div>
 </div>
-</body>
-</html>
-
+{% endblock %}

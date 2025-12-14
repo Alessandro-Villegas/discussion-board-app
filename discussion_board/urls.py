@@ -27,4 +27,7 @@ urlpatterns = [
     path('events/', include('events.urls')),
     path('bulletin/', include('bulletin.urls')),
     path('emergency/', include('emergency.urls')),
+    path("accounts/", include("allauth.urls")),
+    path('', include('accounts.urls')),  # new accounts app urls
 ]
+
