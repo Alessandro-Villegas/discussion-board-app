@@ -2,7 +2,7 @@
 
 **Project Name**: Discussion Board App  
 **Team**: Alessandro Villegas, Andres Cantu
-**Timeline**: Oct 6 - Dec ??, 2025
+**Timeline**: Oct 6 - Dec 15, 2025
 
 ---
 
@@ -39,7 +39,7 @@
 | 3.1 | Implement comment/reply system | [Alessandro] | Nov 8 | Nov 21 | ✅ Done |
 | 3.2 | Allow editing and deletion of comments | [Alessandro] | Nov 15 | Nov 21 | ✅ Done |
 | 3.3 | Implement Upvote/Downvote system | [Andres] | Nov 22 | Nov 28 | ✅ Done |
-| 3.4 | Add a sorting system | [Name] | Nov 22 | Nov 28 | 📋 To Do |
+| 3.4 | Add a sorting system | [Andres] | Nov 22 | Nov 28 | ❌ Cancelled |
 
 ---
 
@@ -47,9 +47,9 @@
 
 | # | Subtask | Assigned To | Start Date | Due Date | Status |
 |---|---------|-------------|------------|----------|--------|
-| 4.1 | Implement user registration | [Name] | Oct 18 | Oct 24 | 📋 To Do |
-| 4.2 | Implement login/logout | [Name] | Oct 18 | Oct 24 | 📋 To Do |
-| 4.3 | Create user profiles | [Name] | Nov 29 | Dec ?? | 📋 To Do |
+| 4.1 | Implement user registration | [Alessandro] | Oct 18 | Oct 24 | ✅ Done |
+| 4.2 | Implement login/logout | [Alessandro] | Oct 18 | Oct 24 | ✅ Done  |
+| 4.3 | Create user profiles | [Alessandro] | Nov 29 | Dec ?? | ✅ Done  |
 
 ---
 
@@ -57,10 +57,10 @@
 
 | # | Subtask | Assigned To | Start Date | Due Date | Status |
 |---|---------|-------------|------------|----------|--------|
-| 5.1 | Implement search functionality | [Name] | Nov 29 | Dec ?? | 📋 To Do |
-| 5.2 | Add notification system | [Name] | Dec ?? | Dec ?? | 📋 To Do |
-| 5.3 | Implement rich text editor | [Name] | Dec ?? | Dec ?? | 📋 To Do |
-| 5.4 | Improve UI/UX design | [Name] | Dec ?? | Dec ?? | 📋 To Do |
+| 5.1 | Implement search functionality | [Alessandro] | Nov 29 | Dec ?? | ❌ Cancelled  |
+| 5.2 | Add notification system | [Alessandro] | Dec ?? | Dec ?? | ❌ Cancelled |
+| 5.3 | Implement rich text editor | [Alessandro] | Dec ?? | Dec ?? | ✅ Done  |
+| 5.4 | Improve UI/UX design | [Alessandro] | Dec ?? | Dec ?? | ✅ Done  |
 
 ---
 
@@ -68,9 +68,8 @@
 
 | # | Subtask | Assigned To | Start Date | Due Date | Status |
 |---|---------|-------------|------------|----------|--------|
-| 6.1 | Write unit tests | [Name] | Dec ?? | Dec ?? | 📋 To Do |
-| 6.2 | Fix any remaining bugs | [Name] | Dec ?? | Dec ?? | 📋 To Do |
-| 6.3 | User acceptance testing | [Name] | Dec ?? | Dec ?? | 📋 To Do |
+| 6.1 | Write unit tests | [Alessandro] | Dec ?? | Dec ?? | ❌ Cancelled |
+| 6.2 | Fix any remaining bugs | [Alessandro] | Dec ?? | Dec ?? | ✅ Done  |
 
 ---
 
@@ -78,10 +77,8 @@
 
 | # | Subtask | Assigned To | Start Date | Due Date | Status |
 |---|---------|-------------|------------|----------|--------|
-| 7.1 | Complete technical documentation | [Name] | Oct 16 | Dec ?? | 📋 To Do |
-| 7.2 | Create user manual | [Name] | Oct 16 | Dec ?? | 📋 To Do |
-| 7.3 | Deploy application | [Name] | Oct 16 | Dec ?? | 📋 To Do |
-| 7.4 | Prepare final presentation | All | Dec ?? | Dec ?? | 📋 To Do |
+| 7.1 | Complete technical documentation | [Alessandro] | Oct 16 | Dec ?? | ✅ Done |
+| 7.2 | Prepare final presentation | All | Dec ?? | Dec ?? | ✅ Done  |
 
 ---
 
@@ -93,8 +90,8 @@
 | **Sprint 2** | Oct 18 - Oct 31 | Auth & Basic CRUD | Topic Creation ✅ |
 | **Sprint 3** | Nov 1 - Nov 14 | Complete CRUD | **Working Prototype** ✅ |
 | **Sprint 4** | Nov 15 - Nov 28 | External Features | Comments & Voting ✅ |
-| **Sprint 5** | Nov 29 - Dec 12 | Additional Features | Search & Profiles 📋 |
-| **Sprint 6** | Dec ?? - Dec ?? | Testing & Deploy | **Final Delivery** 📋 |
+| **Sprint 5** | Nov 29 - Dec 12 | Additional Features | Profiles ✅ |
+| **Sprint 6** | Dec ?? - Dec ?? | Testing & Deploy | **Final Delivery** ✅ |
 
 ---
 
@@ -104,7 +101,7 @@
 |------|-----------|--------|
 | **Oct 17** | First Delivery: Repo & Documentation | ✅ Done |
 | **Nov 14** | Second Delivery: Working Prototype | ✅ Done|
-| **Dec 15** | Final Delivery: Complete Application | 📋 To Do |
+| **Dec 15** | Final Delivery: Complete Application | ✅ Done |
 
 ---
 
@@ -113,11 +110,11 @@
 | Task Category | Progress |
 |---------------|----------|
 | Setup & Planning | 100% ✅ |
-| Core CRUD | 0% 📋  |
-| Authentication | 0% 📋 |
-| External Features | 0% 📋 |
-| Testing | 0% 📋 |
-| Deployment | 0% 📋 |
+| Core CRUD | 100% ✅  |
+| Authentication | 100% ✅ |
+| External Features | 100% ✅ |
+| Testing | 100% ✅ |
+| Deployment | 100% ✅ |
 
 ---
 
@@ -129,20 +126,3 @@
 - ❌ Cancelled - Not doing anymore
 
 ---
-
-## Quick Update Log
-
-**Week of Oct 13**:
-- ✅ Created GitHub repository
-- ✅ Wrote README and technical docs
-- ✅ Set up Django project structure
-
-**Week of Oct 20**:
-- 🚧 Working on topic creation
-- 🚧 Building templates
-- 📋 Next: Topic editing and deletion
-
----
-
-**Last Updated**: October 16, 2025  
-**Next Update**: October 23, 2025
