@@ -3,9 +3,8 @@
 ## Project Description
 This app focuses on UTRGV students and enables users to post and view announcements, leave comments on their own posts and others, manage activities, discover events, and connect with the community.
 
-## Team Members
-- Alessandro Villegas
-- Andres Cantu
+## Owner
+Alessandro Villegas
 
 ## Tech Stack
 - Frontend HTML, CSS (Django Templates), Bootstrap
